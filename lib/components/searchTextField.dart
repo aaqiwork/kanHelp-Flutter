@@ -12,7 +12,7 @@ class MyTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         focusNode: focusNode,
-        style: TextStyle(fontSize: 16, color: Colors.white),
+        style: TextStyle(fontSize: 16, color: Colors.black),
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

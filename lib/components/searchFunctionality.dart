@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:kanHelp/components/allEmployees.dart';
 import 'package:kanHelp/components/noItems.dart';
 import 'package:kanHelp/components/popupListItem.dart';
 import 'package:kanHelp/components/searchTextField.dart';
@@ -8,13 +6,13 @@ import 'package:kanHelp/components/selectedItem.dart';
 import 'package:kanHelp/models/employees.dart';
 import 'package:search_widget/search_widget.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchFunction extends StatefulWidget {
   @override
-  _SearchScreenState createState() => _SearchScreenState();
+  _SearchFunctionState createState() => _SearchFunctionState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
-  List<Employees> list = <Employees>[
+class _SearchFunctionState extends State<SearchFunction> {
+    List<Employees> list = <Employees>[
     Employees(
         "Amanda Seyfried", 5, '152453356', 'Cooking', 'Bangalore', '1.jpg'),
     Employees("Julie Ann", 4.5, '452123256', 'Cleaning', 'Bangalore', '2.jpg'),
@@ -27,29 +25,14 @@ class _SearchScreenState extends State<SearchScreen> {
     Employees(
         "Mariam Abdullah", 4.1, '1524533564', 'Cooking', 'Bangalore', '6.jpg'),
     Employees(
-        "Joe Frazier", 5.0, '7454845562', 'Electrical', 'Bangalore', '7.jpg'),
+        "Joe Frazier", 5.0, '7454845562', 'Ironing', 'Bangalore', '7.jpg'),
   ];
 
   Employees _selectedItem;
-
-  bool _show = true;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("Search Widget"),
-      // ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        child: Container(
-          height: MediaQuery.of(context).size.height * 2,
-          child: Column(
-            children: <Widget>[
-              const SizedBox(
-                height: 16,
-              ),
-              SearchWidget<Employees>(
+    return Column(
+          children:[ SearchWidget<Employees>(
                 dataList: list,
                 hideSearchBoxWhenItemSelected: false,
                 listContainerHeight: MediaQuery.of(context).size.height / 4,
@@ -77,14 +60,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   });
                 },
               ),
-              _selectedItem == null
-                  ?  Expanded(child: AllEmployees())
-                    
-                  : SizedBox(),
-            ],
-          ),
-        ),
-      ),
+                const SizedBox(
+              height: 32,
+            ),
+            _selectedItem == null ? Text("No employee selected") : SizedBox(),]
     );
   }
 }
